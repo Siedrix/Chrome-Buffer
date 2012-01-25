@@ -21,7 +21,7 @@ var Buffer = function () {
 				data = JSON.parse( inbound.getAttribute('data') );
 
 			buffer.lastFetch = data;
-			callback(data, error);
+			callback && callback(data, error);
 		}
 
 		outbound.click();
