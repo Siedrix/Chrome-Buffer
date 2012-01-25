@@ -1,0 +1,9 @@
+Load as chrome extension and you will have a buffer object on your console.
+
+buffer.store('key', {data}); To save a json object.
+
+buffer.fetch(key,function(data,err){/..somthing here../}); Load that value on any tab.
+
+buffer.lastFetch; Gives you the las fetch value.
+
+What now?

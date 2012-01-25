@@ -1,0 +1,33 @@
+<script>
+var store = {};
+
+chrome.tabs.executeScript(null, {file: "buffer.js"});
+chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+	console.log('ee',request.type, request);
+
+	if(request.type == 'fetch'){
+
+		if(store[request.key]){
+			console.log('Fetch request', request.key);
+			sendResponse({action:'fetch', error: '', message: 'Here\'s your data', data : store[request.key]});
+		}else{
+			console.log('Fetch to empty value request');
+			sendResponse({action:'fetch', error: 'No data to fetch'});
+		}
+	}else if(request.type == 'store'){
+		console.log('Store request', request.value);
+
+		store[request.key] = request.value;
+		sendResponse({action:'store', error: '', message: 'Data store'});
+	}else{
+		console.warn('No mapped request');
+
+		sendResponse({action:'invalid', error: 'No way to process the request'});
+	}
+	
+
+});
+
+
+
+</script>

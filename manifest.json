@@ -1,0 +1,17 @@
+{
+	"name": "Buffer",
+	"version": "0.0.1",
+
+	"background_page": "background.html",
+
+	"content_scripts": [
+		{
+			"matches": ["http://*/*"],
+			"js": ["buffer.js"]
+		}
+	],
+
+	"permissions": [
+		"tabs", "http://*/*"
+	]
+}
