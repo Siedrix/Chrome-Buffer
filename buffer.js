@@ -57,10 +57,12 @@ document.body.appendChild(s);
 //*********************************************************************************
 var i = document.createElement('button');
 i.id = 'inbound-fake-protocol';
+i.style.display = 'none';
 document.body.appendChild(i);
 
 var b = document.createElement('button');
 b.id = 'outbound-fake-protocol';
+b.style.display = 'none';
 document.body.appendChild(b);
 
 b.onclick = function(e){
