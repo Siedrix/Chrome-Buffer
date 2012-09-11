@@ -42,6 +42,30 @@ var Buffer = function () {
 
 		outbound.click()
 	}
+
+	this.liveSync = function (serverPath ,file) {
+		var s = document.createElement('script');		
+		s.onload = function(){
+			console.log('faye ready');
+
+			window.fayeClient = new Faye.Client(serverPath + '/faye');
+
+			fayeClient.publish('/watch',{
+				file : file
+			});
+
+			fayeClient.subscribe('/file/'+ file, function(message) {
+			  	eval(message.file);
+			});
+		}
+
+		s.onerror = function () {
+			console.log('didnt load');
+		}
+
+		s.src = serverPath + '/faye-browser.js';
+		document.body.appendChild(s);
+	}
 }
 
 // This code injects buffer function to the browser.
